@@ -1,10 +1,13 @@
 package com.mghbackend.entity;
 
+import com.mghbackend.entity.BaseEntity;
+import com.mghbackend.entity.TypePermission;
+import com.mghbackend.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.security.Permission;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,11 +23,11 @@ public class Role extends BaseEntity {
 	private String description;
 
 	@ManyToMany(mappedBy = "roles")
-	private Set<User> users;
+	private Set<User> users = new HashSet<>();
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Enumerated(EnumType.STRING)
 	@CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
 	@Column(name = "permission")
-	private Set<Permission> permissions;
+	private Set<TypePermission> permissions = new HashSet<>();
 }

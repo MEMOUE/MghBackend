@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,9 @@ public class Hotel extends BaseEntity {
 	@Column(nullable = false, unique = true, length = 100)
 	private String email;
 
+	@Column(nullable = false)
+	private String password;
+
 	@Column(length = 20)
 	private String phone;
 
@@ -26,7 +30,7 @@ public class Hotel extends BaseEntity {
 	private String address;
 
 	@Column(length = 255)
-	private String logourl;
+	private String logoUrl;
 
 	@Column(length = 50)
 	private String taxNumber;
@@ -37,5 +41,5 @@ public class Hotel extends BaseEntity {
 	private LocalDateTime subscriptionEnd;
 
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<User> users;
+	private List<User> users = new ArrayList<>();
 }

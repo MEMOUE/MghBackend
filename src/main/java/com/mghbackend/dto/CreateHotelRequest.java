@@ -6,17 +6,25 @@ import lombok.AllArgsConstructor;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest {
+public class CreateHotelRequest {
+	@NotBlank(message = "Le nom de l'hôtel est obligatoire")
+	@Size(min = 2, max = 100, message = "Le nom doit contenir entre 2 et 100 caractères")
+	private String name;
+
 	@NotBlank(message = "L'email est obligatoire")
 	@Email(message = "Format d'email invalide")
 	private String email;
 
-	@NotBlank(message = "Le mot de passe est obligatoire")
-	private String password;
+	private String phone;
+	private String address;
+	private String taxNumber;
 
-	private String accountType; // "HOTEL" ou "USER"
+	@NotBlank(message = "Le mot de passe est obligatoire")
+	@Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+	private String password;
 }

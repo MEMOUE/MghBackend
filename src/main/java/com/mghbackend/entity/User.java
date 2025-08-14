@@ -1,9 +1,13 @@
 package com.mghbackend.entity;
 
+import com.mghbackend.entity.BaseEntity;
+import com.mghbackend.entity.Hotel;
+import com.mghbackend.entity.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,6 +31,9 @@ public class User extends BaseEntity {
 	@Column(nullable = false, length = 50)
 	private String lastName;
 
+	@Column(length = 20)
+	private String phone;
+
 	@Column(nullable = false)
 	private Boolean active = true;
 
@@ -40,5 +47,5 @@ public class User extends BaseEntity {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 	)
-	private Set<Role> roles;
+	private Set<Role> roles = new HashSet<>();
 }

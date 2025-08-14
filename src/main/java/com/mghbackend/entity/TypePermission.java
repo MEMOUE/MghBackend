@@ -22,4 +22,3 @@ public enum TypePermission {
 	// Accès admin
 	ACCES_COMPLET
 }
-

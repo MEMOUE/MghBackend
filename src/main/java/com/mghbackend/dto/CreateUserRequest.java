@@ -1,22 +1,19 @@
 package com.mghbackend.dto;
 
-import com.mghbackend.entity.TypeRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-	private Long id;
-
+public class CreateUserRequest {
 	@NotBlank(message = "Le nom d'utilisateur est obligatoire")
 	@Size(min = 3, max = 50, message = "Le nom d'utilisateur doit contenir entre 3 et 50 caractères")
 	private String username;
@@ -34,10 +31,11 @@ public class UserDto {
 	private String lastName;
 
 	private String phone;
-	private Boolean active;
-	private Long hotelId;
-	private String hotelName;
-	private Set<String> roleNames; // Noms des rôles au lieu des enums
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+
+	@NotBlank(message = "Le mot de passe est obligatoire")
+	@Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+	private String password;
+
+	@NotEmpty(message = "Au moins un rôle doit être assigné")
+	private Set<String> roleNames;
 }
