@@ -1,6 +1,7 @@
 package com.mghbackend.config;
 
 import com.mghbackend.entity.*;
+import com.mghbackend.enums.TypePermission;
 import com.mghbackend.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

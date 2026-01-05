@@ -1,6 +1,5 @@
 package com.mghbackend.dto;
 
-import com.mghbackend.entity.TypeRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

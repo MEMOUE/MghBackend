@@ -1,7 +1,7 @@
 package com.mghbackend.repository;
 
 import com.mghbackend.entity.Permission;
-import com.mghbackend.entity.TypePermission;
+import com.mghbackend.enums.TypePermission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,6 +2,7 @@ package com.mghbackend.service;
 
 import com.mghbackend.dto.*;
 import com.mghbackend.entity.*;
+import com.mghbackend.enums.TypePermission;
 import com.mghbackend.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

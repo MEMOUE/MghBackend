@@ -1,8 +1,6 @@
 package com.mghbackend.entity;
 
-import com.mghbackend.entity.BaseEntity;
-import com.mghbackend.entity.TypePermission;
-import com.mghbackend.entity.User;
+import com.mghbackend.enums.TypePermission;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

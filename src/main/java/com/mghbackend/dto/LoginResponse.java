@@ -1,6 +1,6 @@
 package com.mghbackend.dto;
 
-import com.mghbackend.entity.TypePermission;
+import com.mghbackend.enums.TypePermission;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
