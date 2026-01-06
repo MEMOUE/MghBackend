@@ -1,6 +1,9 @@
 package com.mghbackend.controller;
 
 import com.mghbackend.dto.*;
+import com.mghbackend.dto.reponse.ApiResponse;
+import com.mghbackend.dto.request.CreateHotelRequest;
+import com.mghbackend.dto.request.UpdatePasswordRequest;
 import com.mghbackend.security.CustomUserPrincipal;
 import com.mghbackend.service.HotelService;
 import lombok.RequiredArgsConstructor;

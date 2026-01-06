@@ -1,8 +1,8 @@
 package com.mghbackend.controller;
 
-import com.mghbackend.dto.ApiResponse;
-import com.mghbackend.dto.LoginRequest;
-import com.mghbackend.dto.LoginResponse;
+import com.mghbackend.dto.reponse.ApiResponse;
+import com.mghbackend.dto.request.LoginRequest;
+import com.mghbackend.dto.reponse.LoginResponse;
 import com.mghbackend.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

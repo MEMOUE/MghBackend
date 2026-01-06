@@ -1,4 +1,4 @@
-package com.mghbackend.dto;
+package com.mghbackend.dto.reponse;
 
 import com.mghbackend.enums.TypePermission;
 import lombok.Data;

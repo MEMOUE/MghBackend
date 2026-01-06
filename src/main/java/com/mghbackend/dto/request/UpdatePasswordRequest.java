@@ -1,4 +1,4 @@
-package com.mghbackend.dto;
+package com.mghbackend.dto.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

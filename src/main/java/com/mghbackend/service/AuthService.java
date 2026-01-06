@@ -1,7 +1,7 @@
 package com.mghbackend.service;
 
-import com.mghbackend.dto.LoginRequest;
-import com.mghbackend.dto.LoginResponse;
+import com.mghbackend.dto.request.LoginRequest;
+import com.mghbackend.dto.reponse.LoginResponse;
 import com.mghbackend.entity.*;
 import com.mghbackend.enums.TypePermission;
 import com.mghbackend.repository.HotelRepository;

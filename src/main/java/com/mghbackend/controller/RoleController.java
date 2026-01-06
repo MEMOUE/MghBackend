@@ -1,6 +1,6 @@
 package com.mghbackend.controller;
 
-import com.mghbackend.dto.ApiResponse;
+import com.mghbackend.dto.reponse.ApiResponse;
 import com.mghbackend.entity.Role;
 import com.mghbackend.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
