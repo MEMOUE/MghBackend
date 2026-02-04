@@ -40,6 +40,8 @@ public class SecurityConfig {
 						.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/public/**").permitAll()
 						.requestMatchers("/api/hotels/register").permitAll()
+						.requestMatchers("/api/chambres/**").permitAll()
+						.requestMatchers("/api/chambres/create/**").permitAll()
 						.requestMatchers("/swagger-ui/**").permitAll()
 						.requestMatchers("/api-docs/**").permitAll()
 						.requestMatchers("/actuator/health").permitAll()

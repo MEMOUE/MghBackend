@@ -1,9 +1,10 @@
-package com.mghbackend.security;
+package com.mghbackend.service;
 
 import com.mghbackend.entity.*;
 import com.mghbackend.enums.TypePermission;
 import com.mghbackend.repository.HotelRepository;
 import com.mghbackend.repository.UserRepository;
+import com.mghbackend.security.CustomUserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

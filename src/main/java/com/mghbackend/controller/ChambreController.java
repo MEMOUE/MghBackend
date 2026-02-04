@@ -9,6 +9,7 @@ import com.mghbackend.security.CustomUserPrincipal;
 import com.mghbackend.service.ChambreService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,20 +22,31 @@ import java.util.List;
 @RequestMapping("/api/chambres")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
+@Slf4j
 public class ChambreController {
 
     private final ChambreService chambreService;
 
-    @PostMapping
+    /**
+     * ✅ CORRECTION PRINCIPALE : Ajout de @AuthenticationPrincipal pour récupérer l'utilisateur
+     */
+    @PostMapping("/create")
     @PreAuthorize("hasRole('HOTEL') or hasAuthority('PERMISSION_VOIR_CONFIGURATION')")
     public ResponseEntity<ApiResponse<ChambreDto>> createChambre(
             @Valid @RequestBody ChambreDto chambreDto,
-            @AuthenticationPrincipal CustomUserPrincipal principal) {
+            @AuthenticationPrincipal CustomUserPrincipal principal) {  // ✅ AJOUT DU PARAMÈTRE
+
         try {
+            log.info("🏨 Création chambre - User: {}, HotelId: {}",
+                    principal.getEmail(), principal.getHotelId());
+
+            // ✅ Le hotelId est récupéré automatiquement depuis le principal
             ChambreDto chambre = chambreService.createChambre(principal.getHotelId(), chambreDto);
+
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(ApiResponse.success("Chambre créée avec succès", chambre));
         } catch (RuntimeException e) {
+            log.error("❌ Erreur création chambre: {}", e.getMessage());
             return ResponseEntity.badRequest()
                     .body(ApiResponse.error(e.getMessage()));
         }
@@ -57,6 +69,7 @@ public class ChambreController {
     public ResponseEntity<ApiResponse<List<ChambreDto>>> getChambres(
             @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
+            log.info("📋 Liste chambres - HotelId: {}", principal.getHotelId());
             List<ChambreDto> chambres = chambreService.getChambresByHotel(principal.getHotelId());
             return ResponseEntity.ok(ApiResponse.success(chambres));
         } catch (RuntimeException e) {
@@ -71,7 +84,8 @@ public class ChambreController {
             @PathVariable StatutChambre statut,
             @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
-            List<ChambreDto> chambres = chambreService.getChambresByHotelAndStatut(principal.getHotelId(), statut);
+            List<ChambreDto> chambres = chambreService.getChambresByHotelAndStatut(
+                    principal.getHotelId(), statut);
             return ResponseEntity.ok(ApiResponse.success(chambres));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest()
@@ -85,7 +99,8 @@ public class ChambreController {
             @PathVariable TypeChambre type,
             @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
-            List<ChambreDto> chambres = chambreService.getChambresByHotelAndType(principal.getHotelId(), type);
+            List<ChambreDto> chambres = chambreService.getChambresByHotelAndType(
+                    principal.getHotelId(), type);
             return ResponseEntity.ok(ApiResponse.success(chambres));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest()
@@ -99,7 +114,8 @@ public class ChambreController {
             @RequestParam String keyword,
             @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
-            List<ChambreDto> chambres = chambreService.searchChambres(principal.getHotelId(), keyword);
+            List<ChambreDto> chambres = chambreService.searchChambres(
+                    principal.getHotelId(), keyword);
             return ResponseEntity.ok(ApiResponse.success(chambres));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest()
@@ -113,7 +129,8 @@ public class ChambreController {
             @Valid @RequestBody DisponibiliteChambreRequest request,
             @AuthenticationPrincipal CustomUserPrincipal principal) {
         try {
-            List<ChambreDto> chambres = chambreService.getChambresDisponibles(principal.getHotelId(), request);
+            List<ChambreDto> chambres = chambreService.getChambresDisponibles(
+                    principal.getHotelId(), request);
             return ResponseEntity.ok(ApiResponse.success(chambres));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest()
